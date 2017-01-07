@@ -1,0 +1,10 @@
+package org.catinthedark.lib.components
+
+import com.artemis.Component
+import com.badlogic.gdx.math.Vector3
+
+class TransformComponent(
+    val pos: Vector3 = Vector3.Zero,
+    val angle: Float = 0f,
+    val scale: Vector3 = Vector3(1f,1f,1f)
+): Component()

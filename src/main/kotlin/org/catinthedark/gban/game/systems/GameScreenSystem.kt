@@ -1,6 +1,8 @@
 package org.catinthedark.gban.game.systems
 
 import com.artemis.BaseSystem
+import com.artemis.Component
+import com.artemis.EntityEdit
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.math.Vector3
 import org.catinthedark.gban.game.Assets
@@ -27,116 +29,109 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createSky() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.SKY)))
-            .add(TransformComponent(
-                pos = Vector3(0f, 204f, 100f)
-            ))
-            .add(ParallaxComponent(
+                texture = am.getTextureRegion(Assets.SKY)),
+            TransformComponent(
+                pos = Vector3(0f, 204f, 100f)),
+            ParallaxComponent(
                 distance = 0.5f,
-                isDistant = false
-            ))
+                isDistant = false))
     }
 
     fun createBackground() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.BACKGROUND)))
-            .add(TransformComponent(
-                pos = Vector3(0f, 285f, 14f)
-            ))
-            .add(ParallaxComponent(
+                texture = am.getTextureRegion(Assets.BACKGROUND)),
+            TransformComponent(
+                pos = Vector3(0f, 285f, 14f)),
+            ParallaxComponent(
                 distance = 150f,
-                isDistant = true
-            ))
+                isDistant = true))
     }
 
     fun createEnemyHedge() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.ENEMY_HEDGE)))
-            .add(TransformComponent(
-                pos = Vector3(0f, 359f, 13f)
-            ))
-            .add(ParallaxComponent(
+                texture = am.getTextureRegion(Assets.ENEMY_HEDGE)),
+            TransformComponent(
+                pos = Vector3(0f, 359f, 13f)),
+            ParallaxComponent(
                 distance = 90f,
-                isDistant = true
-            ))
+                isDistant = true))
     }
 
     fun createRoad() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.ROAD)))
-            .add(TransformComponent(
-                pos = Vector3(0f, 295f, 12f)
-            ))
-            .add(ParallaxComponent(
+                texture = am.getTextureRegion(Assets.ROAD)),
+            TransformComponent(
+                pos = Vector3(0f, 295f, 12f)),
+            ParallaxComponent(
                 distance = 90f,
-                isDistant = true
-            ))
+                isDistant = true))
     }
 
     fun createGround() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.GROUND)))
-            .add(TransformComponent(
-                pos = Vector3(0f, -88f, 11f)
-            ))
-            .add(ParallaxComponent(
+                texture = am.getTextureRegion(Assets.GROUND)),
+            TransformComponent(
+                pos = Vector3(0f, -88f, 11f)),
+            ParallaxComponent(
                 distance = 88f,
-                isDistant = false
-            ))
+                isDistant = false))
     }
 
     fun createHedge() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.HEDGE)))
-            .add(TransformComponent(
-                pos = Vector3(0f, 0f, 10f)
-            ))
-            .add(ParallaxComponent(
+                texture = am.getTextureRegion(Assets.HEDGE)),
+            TransformComponent(
+                pos = Vector3(0f, 0f, 10f)),
+            ParallaxComponent(
                 distance = 88f,
-                isDistant = false
-            ))
+                isDistant = false))
     }
 
     fun createWaterPump() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.WATER_PUMP)))
-            .add(TransformComponent(
-                pos = Vector3(60f, 20f, 9f)
-            ))
+                texture = am.getTextureRegion(Assets.WATER_PUMP)),
+            TransformComponent(
+                pos = Vector3(60f, 20f, 9f)))
     }
 
     fun createWaterBar() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.WATER_BAR)))
-            .add(TransformComponent(
-                pos = Vector3(15f, 20f, 9f)
-            ))
+                texture = am.getTextureRegion(Assets.WATER_BAR)),
+            TransformComponent(
+                pos = Vector3(15f, 20f, 9f)))
     }
 
     fun createPlants() {
-        world.createEntity().edit()
-            .add(TextureComponent(
+        entity(
+            TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.PLANTS)))
-            .add(TransformComponent(
-                pos = Vector3(1100f, 20f, 9f)
-            ))
+                texture = am.getTextureRegion(Assets.PLANTS)),
+            TransformComponent(
+                pos = Vector3(1100f, 20f, 9f)))
+    }
+
+    fun entity(vararg components: Component): EntityEdit {
+        val e = world.createEntity().edit()
+        components.forEach {
+            e.add(it)
+        }
+        return e
     }
 }

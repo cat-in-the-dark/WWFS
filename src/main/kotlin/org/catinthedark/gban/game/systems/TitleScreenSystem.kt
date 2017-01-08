@@ -1,7 +1,5 @@
 package org.catinthedark.gban.game.systems
 
-import com.artemis.Archetype
-import com.artemis.ArchetypeBuilder
 import com.artemis.BaseSystem
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.Texture

@@ -7,6 +7,7 @@ import org.catinthedark.gban.game.GbanGame
 object DesktopLauncher {
     @JvmStatic
     fun main(args: Array<String>) {
+        System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL", "true")
         LwjglApplication(GbanGame(), LwjglApplicationConfiguration().apply {
             title = "GBAN"
             width = 1161

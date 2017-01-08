@@ -4,6 +4,7 @@ import com.artemis.BaseSystem
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.math.Vector3
 import org.catinthedark.gban.game.Assets
+import org.catinthedark.gban.game.components.ParallaxComponent
 import org.catinthedark.lib.components.TextureComponent
 import org.catinthedark.lib.components.TransformComponent
 import org.catinthedark.lib.getTextureRegion
@@ -33,6 +34,10 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
             .add(TransformComponent(
                 pos = Vector3(0f, 204f, 100f)
             ))
+            .add(ParallaxComponent(
+                distance = 0.5f,
+                isDistant = false
+            ))
     }
 
     fun createBackground() {
@@ -42,6 +47,10 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 texture = am.getTextureRegion(Assets.BACKGROUND)))
             .add(TransformComponent(
                 pos = Vector3(0f, 285f, 14f)
+            ))
+            .add(ParallaxComponent(
+                distance = 150f,
+                isDistant = true
             ))
     }
 
@@ -53,6 +62,10 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
             .add(TransformComponent(
                 pos = Vector3(0f, 359f, 13f)
             ))
+            .add(ParallaxComponent(
+                distance = 90f,
+                isDistant = true
+            ))
     }
 
     fun createRoad() {
@@ -63,6 +76,10 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
             .add(TransformComponent(
                 pos = Vector3(0f, 295f, 12f)
             ))
+            .add(ParallaxComponent(
+                distance = 90f,
+                isDistant = true
+            ))
     }
 
     fun createGround() {
@@ -71,7 +88,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 center = false,
                 texture = am.getTextureRegion(Assets.GROUND)))
             .add(TransformComponent(
-                pos = Vector3(0f, 0f, 11f)
+                pos = Vector3(0f, -88f, 11f)
+            ))
+            .add(ParallaxComponent(
+                distance = 88f,
+                isDistant = false
             ))
     }
 
@@ -82,6 +103,10 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 texture = am.getTextureRegion(Assets.HEDGE)))
             .add(TransformComponent(
                 pos = Vector3(0f, 0f, 10f)
+            ))
+            .add(ParallaxComponent(
+                distance = 88f,
+                isDistant = false
             ))
     }
 

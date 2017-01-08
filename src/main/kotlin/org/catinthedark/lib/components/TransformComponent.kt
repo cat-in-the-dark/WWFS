@@ -11,4 +11,6 @@ class TransformComponent(
     override fun compareTo(other: TransformComponent): Int {
         return this.pos.z.compareTo(other.pos.z)
     }
+
+    val initialPos = pos.cpy()
 }

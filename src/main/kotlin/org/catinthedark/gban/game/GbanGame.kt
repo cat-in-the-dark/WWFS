@@ -8,7 +8,8 @@ class GbanGame: Game() {
     override fun create() {
         val am = Assets.load()
         am.finishLoading() // TODO: do it async!
-//        setScreen(TitleScreen(am))
-        setScreen(GameScreen(am))
+        val assets = Assets(am)
+//        setScreen(TitleScreen(assets))
+        setScreen(GameScreen(assets))
     }
 }

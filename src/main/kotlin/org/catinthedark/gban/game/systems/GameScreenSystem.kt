@@ -1,20 +1,18 @@
 package org.catinthedark.gban.game.systems
 
 import com.artemis.BaseSystem
-import com.artemis.Component
-import com.artemis.EntityEdit
-import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.math.Vector3
 import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.components.ParallaxComponent
 import org.catinthedark.gban.game.components.StateComponent
 import org.catinthedark.lib.components.TextureComponent
 import org.catinthedark.lib.components.TransformComponent
-import org.catinthedark.lib.getTextureRegion
+import org.catinthedark.lib.entity
 
-class GameScreenSystem(val am: AssetManager) : BaseSystem() {
+class GameScreenSystem(val assets: Assets) : BaseSystem() {
+    var pack = assets.goodThemePack
+
     override fun processSystem() {
-
     }
 
     override fun initialize() {
@@ -31,11 +29,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createSky(state: StateComponent) {
-        entity(
+        world.entity(
             state,
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.SKY)),
+                texture = pack.sky),
             TransformComponent(
                 pos = Vector3(0f, 204f, 100f)),
             ParallaxComponent(
@@ -44,11 +42,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createBackground(state: StateComponent) {
-        entity(
+        world.entity(
             state,
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.BACKGROUND)),
+                texture = pack.background),
             TransformComponent(
                 pos = Vector3(0f, 285f, 14f)),
             ParallaxComponent(
@@ -57,11 +55,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createEnemyHedge(state: StateComponent) {
-        entity(
+        world.entity(
             state,
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.ENEMY_HEDGE)),
+                texture = pack.enemy_hedge),
             TransformComponent(
                 pos = Vector3(0f, 359f, 13f)),
             ParallaxComponent(
@@ -70,11 +68,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createRoad(state: StateComponent) {
-        entity(
+        world.entity(
             state,
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.ROAD)),
+                texture = pack.road),
             TransformComponent(
                 pos = Vector3(0f, 295f, 12f)),
             ParallaxComponent(
@@ -83,11 +81,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createGround(state: StateComponent) {
-        entity(
+        world.entity(
             state,
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.GROUND)),
+                texture = pack.ground),
             TransformComponent(
                 pos = Vector3(0f, -88f, 11f)),
             ParallaxComponent(
@@ -96,11 +94,11 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createHedge(state: StateComponent) {
-        entity(
+        world.entity(
             state,
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.HEDGE)),
+                texture = pack.hedge),
             TransformComponent(
                 pos = Vector3(0f, 0f, 10f)),
             ParallaxComponent(
@@ -109,37 +107,29 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     fun createWaterPump() {
-        entity(
+        world.entity(
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.WATER_PUMP)),
+                texture = pack.waterPump),
             TransformComponent(
                 pos = Vector3(60f, 20f, 9f)))
     }
 
     fun createWaterBar() {
-        entity(
+        world.entity(
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.WATER_BAR)),
+                texture = pack.waterBar),
             TransformComponent(
                 pos = Vector3(15f, 20f, 9f)))
     }
 
     fun createPlants() {
-        entity(
+        world.entity(
             TextureComponent(
                 center = false,
-                texture = am.getTextureRegion(Assets.PLANTS)),
+                texture = pack.plants[2]),
             TransformComponent(
                 pos = Vector3(1100f, 20f, 9f)))
-    }
-
-    fun entity(vararg components: Component): EntityEdit {
-        val e = world.createEntity().edit()
-        components.forEach {
-            e.add(it)
-        }
-        return e
     }
 }

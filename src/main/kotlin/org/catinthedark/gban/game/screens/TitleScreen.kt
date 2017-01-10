@@ -4,6 +4,7 @@ import com.artemis.World
 import com.artemis.WorldConfigurationBuilder
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.assets.AssetManager
+import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.Const
 import org.catinthedark.gban.game.systems.TitleScreenSystem
 import org.catinthedark.lib.systems.ClearScreenSystem
@@ -11,7 +12,7 @@ import org.catinthedark.lib.systems.TextureRenderSystem
 import org.catinthedark.lib.systems.ViewportSystem
 
 class TitleScreen(
-    val am: AssetManager
+    val assets: Assets
 ) : Screen {
     private val viewportSystem: ViewportSystem = ViewportSystem(
         Const.Screen.WIDTH / Const.Screen.ZOOM,
@@ -22,7 +23,7 @@ class TitleScreen(
         ClearScreenSystem(),
         viewportSystem,
         TextureRenderSystem(viewportSystem.mainStage),
-        TitleScreenSystem(am)
+        TitleScreenSystem(assets)
     ).build())
 
     override fun show() {

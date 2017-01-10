@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetManager
 import org.catinthedark.gban.game.Const
 import org.catinthedark.gban.game.systems.GameScreenSystem
 import org.catinthedark.gban.game.systems.ParallaxSystem
+import org.catinthedark.gban.game.systems.PlayerControlsSystem
 import org.catinthedark.lib.systems.ClearScreenSystem
 import org.catinthedark.lib.systems.TextureRenderSystem
 import org.catinthedark.lib.systems.ViewportSystem
@@ -24,7 +25,8 @@ class GameScreen(
         viewportSystem,
         TextureRenderSystem(viewportSystem.mainStage),
         GameScreenSystem(am),
-        ParallaxSystem()
+        ParallaxSystem(Const.UI.PARALLAX_SPEED),
+        PlayerControlsSystem()
     ).build())
 
     override fun show() {

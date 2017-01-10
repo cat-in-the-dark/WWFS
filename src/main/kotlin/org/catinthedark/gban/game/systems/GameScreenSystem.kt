@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.math.Vector3
 import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.components.ParallaxComponent
+import org.catinthedark.gban.game.components.StateComponent
 import org.catinthedark.lib.components.TextureComponent
 import org.catinthedark.lib.components.TransformComponent
 import org.catinthedark.lib.getTextureRegion
@@ -17,19 +18,21 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
     }
 
     override fun initialize() {
-        createSky()
-        createRoad()
-        createGround()
-        createHedge()
-        createEnemyHedge()
-        createBackground()
+        val state = StateComponent()
+        createSky(state)
+        createRoad(state)
+        createGround(state)
+        createHedge(state)
+        createEnemyHedge(state)
+        createBackground(state)
         createWaterBar()
         createWaterPump()
         createPlants()
     }
 
-    fun createSky() {
+    fun createSky(state: StateComponent) {
         entity(
+            state,
             TextureComponent(
                 center = false,
                 texture = am.getTextureRegion(Assets.SKY)),
@@ -40,8 +43,9 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 isDistant = false))
     }
 
-    fun createBackground() {
+    fun createBackground(state: StateComponent) {
         entity(
+            state,
             TextureComponent(
                 center = false,
                 texture = am.getTextureRegion(Assets.BACKGROUND)),
@@ -52,8 +56,9 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 isDistant = true))
     }
 
-    fun createEnemyHedge() {
+    fun createEnemyHedge(state: StateComponent) {
         entity(
+            state,
             TextureComponent(
                 center = false,
                 texture = am.getTextureRegion(Assets.ENEMY_HEDGE)),
@@ -64,8 +69,9 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 isDistant = true))
     }
 
-    fun createRoad() {
+    fun createRoad(state: StateComponent) {
         entity(
+            state,
             TextureComponent(
                 center = false,
                 texture = am.getTextureRegion(Assets.ROAD)),
@@ -76,8 +82,9 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 isDistant = true))
     }
 
-    fun createGround() {
+    fun createGround(state: StateComponent) {
         entity(
+            state,
             TextureComponent(
                 center = false,
                 texture = am.getTextureRegion(Assets.GROUND)),
@@ -88,8 +95,9 @@ class GameScreenSystem(val am: AssetManager) : BaseSystem() {
                 isDistant = false))
     }
 
-    fun createHedge() {
+    fun createHedge(state: StateComponent) {
         entity(
+            state,
             TextureComponent(
                 center = false,
                 texture = am.getTextureRegion(Assets.HEDGE)),

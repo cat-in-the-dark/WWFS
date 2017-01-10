@@ -16,7 +16,7 @@ class TitleScreenSystem(
 
     }
 
-    override fun end() {
+    override fun initialize() {
         world
             .createEntity().edit()
             .add(TextureComponent(

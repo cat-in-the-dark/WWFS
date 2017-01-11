@@ -10,6 +10,7 @@ import org.catinthedark.gban.game.systems.GameScreenSystem
 import org.catinthedark.gban.game.systems.ParallaxSystem
 import org.catinthedark.gban.game.systems.PlayerControlsSystem
 import org.catinthedark.lib.systems.ClearScreenSystem
+import org.catinthedark.lib.systems.PhysicsSystem
 import org.catinthedark.lib.systems.TextureRenderSystem
 import org.catinthedark.lib.systems.ViewportSystem
 
@@ -27,7 +28,8 @@ class GameScreen(
         TextureRenderSystem(viewportSystem.mainStage),
         GameScreenSystem(assets),
         ParallaxSystem(Const.UI.PARALLAX_SPEED),
-        PlayerControlsSystem()
+        PlayerControlsSystem(),
+        PhysicsSystem()
     ).build())
 
     override fun show() {

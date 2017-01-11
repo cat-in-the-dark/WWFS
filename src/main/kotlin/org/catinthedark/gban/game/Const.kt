@@ -16,5 +16,11 @@ object Const {
 
     object Controls {
         val STAND_KEY = Input.Keys.CONTROL_LEFT
+        val LEFT = Input.Keys.A
+        val RIGHT = Input.Keys.D
+    }
+
+    object Physics {
+        val HORIZONTAL_SPEED = 200f
     }
 }

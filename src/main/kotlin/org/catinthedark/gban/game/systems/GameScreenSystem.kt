@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector3
 import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.components.ParallaxComponent
 import org.catinthedark.gban.game.components.StateComponent
+import org.catinthedark.lib.components.PhysicsComponent
 import org.catinthedark.lib.components.TextureComponent
 import org.catinthedark.lib.components.TransformComponent
 import org.catinthedark.lib.entity
@@ -17,6 +18,7 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
 
     override fun initialize() {
         val state = StateComponent()
+        createPlayer(state)
         createSky(state)
         createRoad(state)
         createGround(state)
@@ -26,6 +28,18 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
         createWaterBar()
         createWaterPump()
         createPlants()
+    }
+
+    fun createPlayer(state: StateComponent) {
+        world.entity(
+            state,
+            TextureComponent(
+                center = true,
+                texture = pack.player.up),
+            TransformComponent(
+                pos = Vector3(200f, 200f, 0f)),
+            PhysicsComponent()
+        )
     }
 
     fun createSky(state: StateComponent) {

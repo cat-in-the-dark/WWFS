@@ -6,23 +6,23 @@ import com.artemis.annotations.Wire
 import com.artemis.systems.IteratingSystem
 import com.badlogic.gdx.math.MathUtils
 import org.catinthedark.gban.game.components.ParallaxComponent
-import org.catinthedark.gban.game.components.StateComponent
+import org.catinthedark.gban.game.components.PlayerStateComponent
 import org.catinthedark.lib.components.TransformComponent
 
 @Wire
 class ParallaxSystem(
     private val step: Float = 0.02f
 ) : IteratingSystem(
-    Aspect.all(TransformComponent::class.java, ParallaxComponent::class.java, StateComponent::class.java)
+    Aspect.all(TransformComponent::class.java, ParallaxComponent::class.java, PlayerStateComponent::class.java)
 ) {
     private lateinit var mTransform: ComponentMapper<TransformComponent>
     private lateinit var mParallax: ComponentMapper<ParallaxComponent>
-    private lateinit var mState: ComponentMapper<StateComponent>
+    private lateinit var mPlayerState: ComponentMapper<PlayerStateComponent>
 
     override fun process(entityId: Int) {
         val transform = mTransform[entityId] ?: return
         val parallax = mParallax[entityId] ?: return
-        val state = mState[entityId] ?: return
+        val state = mPlayerState[entityId] ?: return
 
         parallax.direction = if (state.crawling) -1f else 1f
 

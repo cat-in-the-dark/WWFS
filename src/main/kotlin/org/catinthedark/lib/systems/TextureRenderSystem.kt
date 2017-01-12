@@ -4,6 +4,7 @@ import com.artemis.Aspect
 import com.artemis.ComponentMapper
 import com.artemis.Entity
 import com.artemis.annotations.Wire
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.scenes.scene2d.Stage
 import org.catinthedark.lib.components.TextureComponent
@@ -32,7 +33,11 @@ class TextureRenderSystem(
 
     override fun process(entity: Entity) {
         val textureComponent = mTexture[entity]
-        val region = textureComponent.texture ?: return
+        val region = textureComponent.texture
+        if (region == null) {
+            Gdx.app.error("TextureRenderSystem", "TextureRegion is null.")
+            return
+        }
         val transformComponent = mTransform[entity]
         val pos = if (textureComponent.center) {
             Vector3(

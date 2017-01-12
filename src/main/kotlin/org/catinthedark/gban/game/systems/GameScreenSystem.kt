@@ -4,7 +4,8 @@ import com.artemis.BaseSystem
 import com.badlogic.gdx.math.Vector3
 import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.components.ParallaxComponent
-import org.catinthedark.gban.game.components.StateComponent
+import org.catinthedark.gban.game.components.PlayerStateComponent
+import org.catinthedark.lib.components.AnimationComponent
 import org.catinthedark.lib.components.PhysicsComponent
 import org.catinthedark.lib.components.TextureComponent
 import org.catinthedark.lib.components.TransformComponent
@@ -17,7 +18,7 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
     }
 
     override fun initialize() {
-        val state = StateComponent()
+        val state = PlayerStateComponent()
         createPlayer(state)
         createSky(state)
         createRoad(state)
@@ -30,21 +31,30 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
         createPlants()
     }
 
-    fun createPlayer(state: StateComponent) {
+    fun createPlayer(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
+            AnimationComponent(
+                animations = hashMapOf(
+                    "idleUp" to pack.player.up,
+                    "idleDown" to pack.player.down,
+                    "crawling" to pack.player.crawling,
+                    "running" to pack.player.running,
+                    "shooting" to pack.player.shooting,
+                    "killed" to pack.player.killed
+                ),
+                state = "idleUp"),
             TextureComponent(
-                center = true,
-                texture = pack.player.up),
+                center = true),
             TransformComponent(
                 pos = Vector3(200f, 200f, 0f)),
             PhysicsComponent()
         )
     }
 
-    fun createSky(state: StateComponent) {
+    fun createSky(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
             TextureComponent(
                 center = false,
                 texture = pack.sky),
@@ -55,9 +65,9 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
                 isDistant = false))
     }
 
-    fun createBackground(state: StateComponent) {
+    fun createBackground(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
             TextureComponent(
                 center = false,
                 texture = pack.background),
@@ -68,9 +78,9 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
                 isDistant = true))
     }
 
-    fun createEnemyHedge(state: StateComponent) {
+    fun createEnemyHedge(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
             TextureComponent(
                 center = false,
                 texture = pack.enemy_hedge),
@@ -81,9 +91,9 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
                 isDistant = true))
     }
 
-    fun createRoad(state: StateComponent) {
+    fun createRoad(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
             TextureComponent(
                 center = false,
                 texture = pack.road),
@@ -94,9 +104,9 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
                 isDistant = true))
     }
 
-    fun createGround(state: StateComponent) {
+    fun createGround(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
             TextureComponent(
                 center = false,
                 texture = pack.ground),
@@ -107,9 +117,9 @@ class GameScreenSystem(val assets: Assets) : BaseSystem() {
                 isDistant = false))
     }
 
-    fun createHedge(state: StateComponent) {
+    fun createHedge(playerState: PlayerStateComponent) {
         world.entity(
-            state,
+            playerState,
             TextureComponent(
                 center = false,
                 texture = pack.hedge),

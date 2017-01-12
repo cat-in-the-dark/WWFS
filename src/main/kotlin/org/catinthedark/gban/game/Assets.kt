@@ -116,17 +116,20 @@ class Assets(
     )
 
     data class PlayerPack(
-        val frames: List<List<TextureRegion>>
+        private val frames: List<List<TextureRegion>>
     ) {
-        val up = frames[0][0]
-        val down = frames[0][1]
+        val up = normalAnimation(ANIMATION_SPEED, frames,
+            Pair(0,0))
+        val down = normalAnimation(ANIMATION_SPEED, frames,
+            Pair(0,1))
         val shooting = normalAnimation(ANIMATION_SPEED, frames,
             Pair(0, 0), Pair(0, 2), Pair(0, 0))
         val running = loopingAnimation(ANIMATION_SPEED, frames,
             Pair(0, 0), Pair(0, 5), Pair(0, 6))
         val crawling = loopingAnimation(ANIMATION_SPEED, frames,
             Pair(0, 1), Pair(0, 3), Pair(0, 4))
-        val killed = frames[0][7]
+        val killed = normalAnimation(ANIMATION_SPEED, frames,
+            Pair(0,7))
     }
 
     data class EnemyPack(

@@ -11,7 +11,7 @@ object Const {
 
     object UI {
         val PARALLAX_SPEED = 0.08f
-        val ANIMATION_SPEED = 1f
+        val ANIMATION_SPEED = 0.25f
     }
 
     object Controls {

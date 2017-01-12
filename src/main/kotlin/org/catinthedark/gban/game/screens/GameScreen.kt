@@ -8,11 +8,9 @@ import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.Const
 import org.catinthedark.gban.game.systems.GameScreenSystem
 import org.catinthedark.gban.game.systems.ParallaxSystem
+import org.catinthedark.gban.game.systems.PlayerAnimationController
 import org.catinthedark.gban.game.systems.PlayerControlsSystem
-import org.catinthedark.lib.systems.ClearScreenSystem
-import org.catinthedark.lib.systems.PhysicsSystem
-import org.catinthedark.lib.systems.TextureRenderSystem
-import org.catinthedark.lib.systems.ViewportSystem
+import org.catinthedark.lib.systems.*
 
 class GameScreen(
     val assets: Assets
@@ -25,11 +23,13 @@ class GameScreen(
     private val world: World = World(WorldConfigurationBuilder().dependsOn().with(
         ClearScreenSystem(),
         viewportSystem,
+        AnimationSystem(),
         TextureRenderSystem(viewportSystem.mainStage),
         GameScreenSystem(assets),
         ParallaxSystem(Const.UI.PARALLAX_SPEED),
         PlayerControlsSystem(),
-        PhysicsSystem()
+        PhysicsSystem(),
+        PlayerAnimationController()
     ).build())
 
     override fun show() {

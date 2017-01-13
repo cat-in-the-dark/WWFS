@@ -1,5 +1,6 @@
 package org.catinthedark.gban.game
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 
 object Const {
@@ -7,6 +8,14 @@ object Const {
         val WIDTH = 1368
         val HEIGHT = 768
         val ZOOM = 1f
+
+        fun projectX(x: Int): Int {
+            return ((x * WIDTH).toFloat() / Gdx.graphics.width.toFloat()).toInt()
+        }
+
+        fun projectY(y: Int): Int {
+            return ((y * HEIGHT).toFloat() / Gdx.graphics.height.toFloat()).toInt()
+        }
     }
 
     object UI {

@@ -3,7 +3,6 @@ package org.catinthedark.gban.game.screens
 import com.artemis.World
 import com.artemis.WorldConfigurationBuilder
 import com.badlogic.gdx.Screen
-import com.badlogic.gdx.assets.AssetManager
 import org.catinthedark.gban.game.Assets
 import org.catinthedark.gban.game.Const
 import org.catinthedark.gban.game.systems.GameScreenSystem
@@ -27,7 +26,7 @@ class GameScreen(
         TextureRenderSystem(viewportSystem.mainStage),
         GameScreenSystem(assets),
         ParallaxSystem(Const.UI.PARALLAX_SPEED),
-        PlayerControlsSystem(),
+        PlayerControlsSystem(viewportSystem.mainStage),
         PhysicsSystem(),
         PlayerAnimationController()
     ).build())
